@@ -10,7 +10,7 @@ jobs:
       security-events: write
     steps:
       - name: Checkout source code
-        users: actions/checkout@v4
+        uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
