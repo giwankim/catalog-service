@@ -1,7 +1,6 @@
 package com.polarbookshop.catalogservice.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -20,18 +19,20 @@ class BookServiceTest {
 
   @Test
   void whenBookCreateAlreadyExistsThenFail() {
-    Book book = new Book("1234567890", "Title", "Author", 9.90);
+    Book book = Book.create("1234567890", "Title", "Author", 9.90, "Polarsophia");
     when(bookRepository.existsByIsbn(book.isbn())).thenReturn(true);
 
     assertThatThrownBy(() -> bookService.addBookToCatalog(book))
-        .isInstanceOf(BookAlreadyExistsException.class);
+        .isInstanceOf(BookAlreadyExistsException.class)
+        .hasMessage("A book with ISBN " + book.isbn() + " already exists.");
   }
 
   @Test
   void whenBookToReadDoesNotExistsThenFail() {
-    when(bookRepository.findByIsbn(any())).thenReturn(Optional.empty());
+    String isbn = "1234567890";
+    when(bookRepository.findByIsbn(isbn)).thenReturn(Optional.empty());
 
-    assertThatThrownBy(() -> bookService.viewBookDetails("1234567890"))
+    assertThatThrownBy(() -> bookService.viewBookDetails(isbn))
         .isInstanceOf(BookNotFoundException.class);
   }
 }

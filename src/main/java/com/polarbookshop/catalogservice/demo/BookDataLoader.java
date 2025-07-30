@@ -2,6 +2,7 @@ package com.polarbookshop.catalogservice.demo;
 
 import com.polarbookshop.catalogservice.domain.Book;
 import com.polarbookshop.catalogservice.domain.BookRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
@@ -17,9 +18,9 @@ public class BookDataLoader {
 
   @EventListener(ApplicationReadyEvent.class)
   public void loadBookTestData() {
-    Book book1 = new Book("1234567891", "Northern Lights", "Lyra Silverstar", 9.90);
-    Book book2 = new Book("1234567892", "Polar Journey", "Iorek Polarson", 12.90);
-    bookRepository.save(book1);
-    bookRepository.save(book2);
+    Book book1 =
+        Book.create("1234567891", "Northern Lights", "Lyra Silverstar", 9.90, "Polarsophia");
+    Book book2 = Book.create("1234567892", "Polar Journey", "Iorek Polarson", 12.90, "Polarsophia");
+    bookRepository.saveAll(List.of(book1, book2));
   }
 }
