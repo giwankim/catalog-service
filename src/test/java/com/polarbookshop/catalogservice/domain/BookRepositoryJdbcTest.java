@@ -16,7 +16,8 @@ import org.springframework.test.context.ActiveProfiles;
 @Import(JdbcConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration")
-record BookRepositoryJdbcTest(BookRepository bookRepository, JdbcAggregateTemplate jdbcAggregateTemplate) {
+record BookRepositoryJdbcTest(
+    BookRepository bookRepository, JdbcAggregateTemplate jdbcAggregateTemplate) {
 
   @BeforeEach
   void setUp() {
