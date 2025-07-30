@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: polar-postgres
+    image: postgres:17.5-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: polardb_catalog
+    ports:
+      - "5432:5432"
