@@ -1,3 +1,4 @@
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
@@ -67,6 +68,19 @@ tasks.withType<Test> {
 
 tasks.named<BootRun>("bootRun") {
     systemProperty("spring.profiles.active", "testdata")
+}
+
+tasks.named<BootBuildImage>("bootBuildImage") {
+    imageName.set(project.name)
+    environment.put("BP_JVM_VERSION", "21.*")
+
+    docker {
+        publishRegistry {
+            username.set(project.findProperty("registryUsername") as String?)
+            password.set(project.findProperty("registryToken") as String?)
+            url.set(project.findProperty("registryUrl") as String?)
+        }
+    }
 }
 
 spotless {
