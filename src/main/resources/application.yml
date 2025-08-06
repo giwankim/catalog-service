@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: catalog-
+    name: catalog-service
   lifecycle:
     timeout-per-shutdown-phase: 15s
   config:

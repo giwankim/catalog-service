@@ -38,7 +38,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.retry:spring-retry")
-    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.12.0")
+//    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.12.0")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
     compileOnly("org.projectlombok:lombok")
